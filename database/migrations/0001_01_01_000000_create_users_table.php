@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('student_rollno')->nullable(); // Roll number for students
+            $table->string('teacher_id')->nullable(); // Teacher ID for teachers
             $table->string('email')->unique();
+            $table->enum('role',['admin','student','teacher']);
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
